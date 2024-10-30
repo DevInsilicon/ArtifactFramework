@@ -1,0 +1,7 @@
+name: ArtifactFramework
+version: '1.0'
+main: dev.insilicon.artifactFramework.ArtifactFramework
+api-version: '1.20'
+prefix: ATF
+load: STARTUP
+authors: [ ModdedKid ]

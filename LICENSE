@@ -1,16 +1,46 @@
-MIT License
+MIT License with Commercial Use and Attribution Restrictions
 
 Copyright (c) 2024 Jack
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
+in the Software, subject to the following conditions:
 
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
+1. Attribution Requirements:
+  a) Any project using this Software must prominently display in its README:
+     - Credit to the original author (Jack)
+     - A link to the original project repository
+     - Clear acknowledgment that the project is derived from this Software
+  b) The LICENSE file must include this entire license text
+  c) These attribution requirements apply to both public and private deployments
+
+2. Commercial Use Restrictions:
+  a) The Software may be used in commercial infrastructure only if:
+     - Such use does not directly or indirectly generate revenue
+     - The Software is used in its supporting/infrastructure capacity only
+     - The Software is not part of a product or service being sold or monetized
+  b) The following uses are expressly prohibited:
+     - Selling any product or service that incorporates or is derived from the Software
+     - Redistributing the Software as part of a paid product or service
+     - Using the Software to create derivative works for commercial sale
+
+3. Derivative Works Requirements:
+  a) Any project that uses, incorporates, or is derived from this Software:
+     - Must be made public and open source from its inception
+     - Must maintain public accessibility throughout development
+     - Must use an open source license compatible with these terms
+  b) By using this Software, you grant the original author (Jack):
+     - Permission to use your derivative work for commercial purposes
+     - Rights to incorporate elements of your derivative work into the original Software
+
+4. All copies and modified versions must include:
+  a) The above copyright notice
+  b) This permission notice
+  c) All restrictions and requirements outlined in sections 1, 2, and 3
+
+Other than the restrictions noted above, users have the rights to use, copy,
+modify, merge, publish, distribute, and sublicense the Software, and to permit
+persons to whom the Software is furnished to do so.
 
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
