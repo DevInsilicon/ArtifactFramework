@@ -4,4 +4,17 @@ main: dev.insilicon.artifactFramework.ArtifactFramework
 api-version: '1.20'
 prefix: ATF
 load: STARTUP
-authors: [ ModdedKid ]
+authors: [ ModdedKid ] # You are required by the license to retain the author name "ModdedKid" in the author list.
+
+
+
+commands:
+  artifact:
+    description: Main command for the Artifact Framework
+    usage: /artifact
+
+
+permissions:
+  artifact.admin:
+    description: Permission for the admin command
+    default: op
