@@ -7,5 +7,11 @@ public class InterfaceManager {
 
     public InterfaceManager(ArtifactFramework plugin) {
         this.plugin = plugin;
+
+        // Register commands
+        plugin.getCommand("assign").setExecutor(new AssignCMD(plugin));
+        plugin.getCommand("assign").setTabCompleter(new AssignCMD(plugin));
+
+
     }
 }
