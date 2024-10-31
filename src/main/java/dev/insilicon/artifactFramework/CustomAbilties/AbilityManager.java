@@ -24,6 +24,21 @@ public class AbilityManager {
         abilitySQL = new AbilitySQL(plugin);
         abilityListener = new AbilityListener(plugin, this);
         plugin.getServer().getPluginManager().registerEvents(abilityListener, plugin);
+
+
+        plugin.getServer().getScheduler().scheduleSyncRepeatingTask(plugin, new Runnable() {
+            @Override
+            public void run() {
+                second();
+            }
+        }, 0L, 20L);
+
+        plugin.getServer().getScheduler().scheduleSyncRepeatingTask(plugin, new Runnable() {
+            @Override
+            public void run() {
+                minute();
+            }
+        }, 0L, 1200L);
     }
 
     public AbilitySQL getAbilitySQL() {
@@ -63,6 +78,14 @@ public class AbilityManager {
 
     }
 
+    public List<String> getAbilities() {
+        List<String> names = new ArrayList<>();
+        for (CustomAbility ability : abilities) {
+            names.add(ability.getName());
+        }
+        return names;
+    }
+
     public void handleAssignmentLogic(Player player, String abilityData) {
 
         for (CustomAbility ability : abilities) {
@@ -91,4 +114,24 @@ public class AbilityManager {
             ability.movement(player);
         }
     }
+
+    public void tick() {
+        for (CustomAbility ability : abilities) {
+            ability.tick();
+        }
+    }
+
+    public void second() {
+        for (CustomAbility ability : abilities) {
+            ability.Second();
+        }
+    }
+
+    public void minute() {
+        for (CustomAbility ability : abilities) {
+            ability.minute();
+        }
+    }
+
+
 }

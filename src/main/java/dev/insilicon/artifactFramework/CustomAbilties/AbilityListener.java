@@ -129,4 +129,10 @@ public class AbilityListener implements Listener
         return abilitySQL.getAbility(player) != null;
     }
 
+    //tick
+    @EventHandler
+    public void onTick() {
+        abilityManager.tick();
+    }
+
 }

@@ -1,10 +1,10 @@
 name: ArtifactFramework
 version: '1.0'
-main: dev.insilicon.artifactFramework.ArtifactFramework
+main: dev.insilicon.artifactFramework.ArtifactFramework # You are required by the license to maintain the dev.insilicon.artifactFramework package name.
 api-version: '1.20'
-prefix: ATF
+prefix: AFW # You are required by the license to retain the prefix "AFW" in the plugin name.
 load: STARTUP
-authors: [ ModdedKid ] # You are required by the license to retain the author name "ModdedKid" in the author list.
+authors: [ ModdedKid ] # You are required by the license to retain the author name "ModdedKid" in the author list. You may add additional authors.
 
 
 

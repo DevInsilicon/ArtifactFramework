@@ -47,16 +47,37 @@ public class AssignCMD implements CommandExecutor, TabCompleter {
                 switch (current_args[1]) {
 
                     case "abilities":
-                        return List.of("abilities");
+                        return plugin.getAbilityManager().getAbilities();
 
-                    case "blocks":
-                        return List.of("blocks");
 
                     case "items":
-                        return List.of("items");
+                        return plugin.getItemManager().getCustomItems();
 
                     default:
-                        return List.of("abilities", "blocks", "items");
+                        return List.of("abilities", "items");
+                }
+
+            case "give":
+                if (current_args[1] == null) {
+                    return plugin.getServer().getOnlinePlayers().stream().map(player -> player.getName()).toList();
+                }
+                if (current_args[2] == null) {
+                    return plugin.getItemManager().getCustomItems();
+                }
+            case "assgin":
+                if (current_args[1] == null) {
+                    return plugin.getServer().getOnlinePlayers().stream().map(player -> player.getName()).toList();
+                }
+                if (current_args[2] == null) {
+                    return plugin.getAbilityManager().getAbilities();
+                }
+
+            case "unassign":
+                if (current_args[1] == null) {
+                    return plugin.getServer().getOnlinePlayers().stream().map(player -> player.getName()).toList();
+                }
+                if (current_args[2] == null) {
+                    return plugin.getAbilityManager().getAbilities();
                 }
 
             default:
