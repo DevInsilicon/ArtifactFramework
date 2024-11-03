@@ -10,8 +10,9 @@ authors: [ ModdedKid ] # You are required by the license to retain the author na
 
 commands:
   artifact:
-    description: Main command for the Artifact Framework
-    usage: /artifact
+    description: Interface between the Artifact framework and you.
+    usage: /<command>
+    permission: artifact.admin
 
 
 permissions:

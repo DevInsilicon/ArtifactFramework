@@ -3,6 +3,9 @@ package dev.insilicon.artifactFramework.CustomItems;
 import dev.insilicon.artifactFramework.ArtifactFramework;
 import dev.insilicon.artifactFramework.BaseInternal.CustomClasses.CustomItem;
 import dev.insilicon.artifactFramework.BaseInternal.CustomClasses.PDTKeys;
+import dev.insilicon.artifactFramework.CustomItems.Custom.FireballItem;
+import net.kyori.adventure.text.Component;
+import net.kyori.adventure.text.minimessage.MiniMessage;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -11,6 +14,7 @@ import org.bukkit.event.player.PlayerItemHeldEvent;
 import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.event.player.PlayerPickupItemEvent;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.persistence.PersistentDataType;
 
 import java.util.ArrayList;
@@ -20,18 +24,16 @@ public class ItemManager implements Listener {
     private ArtifactFramework plugin;
 
     private List<CustomItem> customItems = new ArrayList<>();
+    private MiniMessage miniMessage = MiniMessage.miniMessage();
 
 
     public ItemManager(ArtifactFramework plugin) {
         this.plugin = plugin;
 
-
         plugin.getServer().getPluginManager().registerEvents(this, plugin);
 
         // ADD CUSTOM ITEMS HERE
-
-
-
+        customItems.add(new FireballItem(plugin));
         // END
 
         // register the second and minute bukkit schedulers
@@ -57,15 +59,38 @@ public class ItemManager implements Listener {
                 tick();
             }
         }, 0L, 1L);
-
     }
 
 
     public void giveCustomItem(Player player, String name) {
         for (CustomItem customItem : customItems) {
             if (customItem.getName().equals(name)) {
-                ItemStack item = customItem.getItembase();
+                // Create a copy of the custom item's base item
+                ItemStack item = customItem.getItembase().clone();
+                ItemMeta meta = item.getItemMeta();
+
+                // Set the persistent data
+                meta.getPersistentDataContainer().set(PDTKeys.CUSTOM_ITEM, PersistentDataType.STRING, name);
+
+                // Get existing lore or create new list if none exists
+                List<Component> currentLore = meta.lore();
+                if (currentLore == null) {
+                    currentLore = new ArrayList<>();
+                }
+
+                // Add the framework signature to lore
+                currentLore.add(miniMessage.deserialize(""));
+                currentLore.add(miniMessage.deserialize("<b><gradient:#0D9D7A:#5BBF06>ᴄʀᴇᴀᴛᴇᴅ ᴡɪᴛʜ ᴀʀᴛɪꜰᴀᴄᴛ ꜰʀᴀᴍᴇᴡᴏʀᴋ</gradient></b>"));
+
+                // Set the updated lore
+                meta.lore(currentLore);
+
+                // Apply the modified meta back to the item
+                item.setItemMeta(meta);
+
+                // Give the item to the player
                 player.getInventory().addItem(item);
+                break;
             }
         }
     }
@@ -146,6 +171,7 @@ public class ItemManager implements Listener {
     public void onPlayerInteract(PlayerInteractEvent event) {
         for (CustomItem customItem : customItems) {
             if (customItem.isHand(event.getPlayer())) {
+
                 customItem.interaction(event);
             }
         }

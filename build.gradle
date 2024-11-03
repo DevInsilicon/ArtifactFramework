@@ -47,28 +47,3 @@ processResources {
         expand props
     }
 }
-
-def targetDirectory = 'C:/Users/jwwww/programming/A_Latest_test_ver/plugins'
-
-// Create a copy task to move the jar to the server plugins folder
-task copyToServer(type: Copy) {
-    from "build/libs/${project.name}-${project.version}.jar"
-    into targetDirectory
-}
-
-// Automatically copy to server after build
-build.finalizedBy(copyToServer)
-
-// Clean the target jar from the server directory when cleaning
-task cleanServer(type: Delete) {
-    delete fileTree(targetDirectory) {
-        include "**/${project.name}-*.jar"
-    }
-}
-
-clean.dependsOn cleanServer
-
-// Override jar output location
-jar {
-    destinationDirectory = file(targetDirectory)
-}

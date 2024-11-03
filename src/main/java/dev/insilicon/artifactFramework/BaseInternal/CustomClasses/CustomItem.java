@@ -22,7 +22,7 @@ public class CustomItem {
     private List<Player> activeHand = new ArrayList<>();
     private ItemStack itembase = new ItemStack(Material.COMPASS);
 
-    public CustomItem(ArtifactFramework plugin, String name, String description, ItemStack itembase) {
+    public CustomItem(ArtifactFramework plugin, String name, String description) {
         this.plugin = plugin;
         this.name = name;
         this.description = description;
@@ -99,5 +99,8 @@ public class CustomItem {
 
     public ItemStack getItembase() {
         return itembase;
+    }
+    public void setItembase(ItemStack itembase) {
+        this.itembase = itembase;
     }
 }

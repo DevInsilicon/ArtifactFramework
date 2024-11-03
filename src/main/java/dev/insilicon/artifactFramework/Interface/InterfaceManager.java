@@ -9,9 +9,6 @@ public class InterfaceManager {
         this.plugin = plugin;
 
         // Register commands
-        plugin.getCommand("assign").setExecutor(new AssignCMD(plugin));
-        plugin.getCommand("assign").setTabCompleter(new AssignCMD(plugin));
-
 
     }
 }

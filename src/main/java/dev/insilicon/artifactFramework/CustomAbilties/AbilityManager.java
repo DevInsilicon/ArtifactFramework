@@ -39,6 +39,13 @@ public class AbilityManager {
                 minute();
             }
         }, 0L, 1200L);
+
+        plugin.getServer().getScheduler().scheduleSyncRepeatingTask(plugin, new Runnable() {
+            @Override
+            public void run() {
+                tick();
+            }
+        }, 0L, 1L);
     }
 
     public AbilitySQL getAbilitySQL() {
