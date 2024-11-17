@@ -1,8 +1,9 @@
 package dev.insilicon.artifactFramework.CustomAbilties;
 
-import dev.insilicon.artifactFramework.ArtifactFramework;
-import dev.insilicon.artifactFramework.BaseInternal.CustomClasses.CustomAbility;
-import dev.insilicon.artifactFramework.BaseInternal.CustomClasses.interactionType;
+import java.util.ArrayList;
+import java.util.List;
+
+import org.bukkit.OfflinePlayer;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -12,43 +13,42 @@ import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
-import org.bukkit.scheduler.BukkitRunnable;
 
-import java.util.ArrayList;
-import java.util.List;
+import dev.insilicon.artifactFramework.ArtifactFramework;
+import dev.insilicon.artifactFramework.BaseInternal.CustomClasses.interactionType;
 
 public class AbilityListener implements Listener {
+    
 
     private ArtifactFramework plugin;
     private AbilityManager abilityManager;
-    private AbilitySQL abilitySQL;
+    private AbilityPDT abilityPDT;
 
     public AbilityListener(ArtifactFramework plugin, AbilityManager abilityManager) {
         this.plugin = plugin;
         this.abilityManager = abilityManager;
-        this.abilitySQL = this.abilityManager.getAbilitySQL();
+        this.abilityPDT = this.abilityManager.getAbilityPDT();
 
     }
 
     @EventHandler
     public void onPlayerJoin(PlayerJoinEvent event) {
         Player player = event.getPlayer();
-        String abilityName = abilitySQL.getAbility(player);
-        String abilityData = abilitySQL.getAbilityData(player);
+        String abilityName = abilityPDT.getAbility((OfflinePlayer) player);
 
         abilityManager.addOnlinePlayer(player);
 
         if (abilityName == null) {
             abilityManager.handleRegisterLogic(player);
         } else {
-            abilityManager.handleAssignmentLogic(player, abilityData);
+            abilityManager.handleAssignmentLogic(player, "");
         }
     }
 
     @EventHandler
     public void onPlayerQuit(PlayerQuitEvent event) {
         Player player = event.getPlayer();
-        String abilityName = abilitySQL.getAbility(player);
+        String abilityName = abilityPDT.getAbility(player);
 
         if (abilityName != null) {
             abilityManager.removeOnlinePlayer(player, abilityName);
@@ -112,6 +112,6 @@ public class AbilityListener implements Listener {
     }
 
     public boolean hasAbility(Player player) {
-        return abilitySQL.getAbility(player) != null;
+        return abilityPDT.getAbility(player) != null;
     }
 }

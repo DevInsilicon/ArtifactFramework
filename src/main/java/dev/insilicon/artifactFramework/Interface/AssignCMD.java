@@ -1,7 +1,7 @@
 package dev.insilicon.artifactFramework.Interface;
 
-import dev.insilicon.artifactFramework.ArtifactFramework;
-import net.kyori.adventure.text.minimessage.MiniMessage;
+import java.util.List;
+
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -11,7 +11,8 @@ import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.List;
+import dev.insilicon.artifactFramework.ArtifactFramework;
+import net.kyori.adventure.text.minimessage.MiniMessage;
 
 public class AssignCMD implements CommandExecutor, TabCompleter {
 
@@ -162,7 +163,7 @@ public class AssignCMD implements CommandExecutor, TabCompleter {
             return;
         }
 
-        plugin.getAbilityManager().getAbilitySQL().setAbility(target, abilityName, "");
+        plugin.getAbilityManager().getAbilityPDT().setAbility(target, abilityName);
         sender.sendMessage(miniMessage.deserialize("<green>✓ Assigned <yellow>" + abilityName + "</yellow> to <yellow>" + target.getName() + "</yellow>!"));
         target.sendMessage(miniMessage.deserialize("<green>✓ You have been granted the ability: <yellow>" + abilityName + "</yellow>!"));
     }

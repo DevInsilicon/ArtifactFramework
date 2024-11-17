@@ -10,9 +10,13 @@ import java.util.List;
 import java.util.Random;
 
 public class AbilityManager {
+    // Note:
+    // This class is for registering and managing abilities.
+    // If you see any "AbilitySQLData" references, they were removed in favor of the PDC system. The original implementation uesd a SQL database.
+    // You can look at the original implementation in the git history.
 
     private ArtifactFramework plugin;
-    private AbilitySQL abilitySQL;
+    private AbilityPDT abilityPDT;
     private List<Player> onlinePlayers = new ArrayList<>();
     private List<CustomAbility> abilities = new ArrayList<>();
     private AbilityListener abilityListener;
@@ -21,7 +25,7 @@ public class AbilityManager {
         this.plugin = plugin;
 
 
-        abilitySQL = new AbilitySQL(plugin);
+        abilityPDT = new AbilityPDT(plugin);
         abilityListener = new AbilityListener(plugin, this);
         plugin.getServer().getPluginManager().registerEvents(abilityListener, plugin);
 
@@ -48,8 +52,8 @@ public class AbilityManager {
         }, 0L, 1L);
     }
 
-    public AbilitySQL getAbilitySQL() {
-        return abilitySQL;
+    public AbilityPDT getAbilityPDT() {
+        return abilityPDT;
     }
 
     public void addOnlinePlayer(Player player) {
@@ -68,6 +72,7 @@ public class AbilityManager {
 
     public void handleRegisterLogic(Player player) {
 
+        // Note for user:
         // Make sure you add this logic (This is called when a player join and doesnt have a registered ability
 
         //example logic give player a random ability
@@ -80,7 +85,7 @@ public class AbilityManager {
         String abilityName = randomAbility.getName();
 
         // Assign the ability to the player
-        abilitySQL.setAbility(player, abilityName, "");
+        abilityPDT.setAbility(player, abilityName);
         randomAbility.join(player);
 
     }
