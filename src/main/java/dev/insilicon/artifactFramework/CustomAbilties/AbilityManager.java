@@ -3,6 +3,7 @@ package dev.insilicon.artifactFramework.CustomAbilties;
 import dev.insilicon.artifactFramework.ArtifactFramework;
 import dev.insilicon.artifactFramework.BaseInternal.CustomClasses.CustomAbility;
 import dev.insilicon.artifactFramework.BaseInternal.CustomClasses.interactionType;
+import dev.insilicon.artifactFramework.CustomAbilties.Custom.SpeedCrouchAbility;
 import org.bukkit.entity.Player;
 
 import java.util.ArrayList;
@@ -28,6 +29,16 @@ public class AbilityManager {
         abilityPDT = new AbilityPDT(plugin);
         abilityListener = new AbilityListener(plugin, this);
         plugin.getServer().getPluginManager().registerEvents(abilityListener, plugin);
+
+
+        // Add abilities here
+
+
+        SpeedCrouchAbility speedCrouchAbility = new SpeedCrouchAbility(plugin);
+        abilities.add(speedCrouchAbility);
+
+
+        // END
 
 
         plugin.getServer().getScheduler().scheduleSyncRepeatingTask(plugin, new Runnable() {
